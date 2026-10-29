@@ -99,6 +99,15 @@ python scripts/suno_download.py "https://suno.com/@作者" --list
 - **架构（已定稿：只做 x64，不再考虑 32 位）**：Qt6 / PySide6、Qt5 / PySide2、PyQt5 在 PyPI 上**都没有 win32 包**（已逐个 `pip download --platform win32` 验证），32 位图形界面版做不出来。真正的 32 位 Windows 请改用源码 + Python 运行（`suno_gui.py` / `suno_download.py`）。`build/make_exe.py` 的架构固定为 x64，不要再尝试加 x86 分支。
 - 若杀软误报：onefile exe 是自解压程序，容易被启发式规则误判，用源码方式运行即可规避。
 
+## 源码仓库
+
+本目录本身就是一个 git 仓库，远程为 **私有的** `https://github.com/lowprofileusername/suno-music-downloader`
+（本地 `git remote -v` 可确认；`gh` 可执行文件在 `C:\Program Files\GitHub CLI\gh.exe`，不在 PATH 里）。
+
+- 改完代码要同步时：在本目录 `git add -A` → `git status` 核对 → `git commit` → `git push`。
+- `.gitignore` 已排除 `build/dist/` 与 `build/*.spec`（exe 走 GitHub Release，不进仓库）。
+- 仅在用户明确要求时才发版：新建 tag 并把 `build/dist/` 下的 exe 上传为 Release 附件。
+
 ## 依赖（源码方式）
 
 `requests` · `cryptography` · `imageio-ffmpeg`（提供 ffmpeg 二进制，用于转 MP3；若系统 PATH 已有 ffmpeg 则优先用系统的）· `PySide6-Essentials`（仅图形界面需要）。
