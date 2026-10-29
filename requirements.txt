@@ -1,0 +1,4 @@
+requests>=2.31
+cryptography>=42
+imageio-ffmpeg>=0.4.9
+PySide6-Essentials>=6.6
